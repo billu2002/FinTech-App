@@ -12,7 +12,6 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 import * as SecureStore from "expo-secure-store";
 
-
 // Cache the Clerk JWT
 const tokenCache = {
   async getToken(key: string) {
@@ -46,7 +45,6 @@ const InitialLayout = () => {
   });
   const router = useRouter();
   const { isLoaded } = useAuth();
-
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
@@ -114,6 +112,32 @@ const InitialLayout = () => {
       <Stack.Screen
         name="help"
         options={{ title: "Help", presentation: "modal" }}
+      />
+
+      <Stack.Screen
+        name="verify/[phone]"
+        options={{
+          title: "",
+          headerBackTitle: "",
+          headerShadowVisible: false,
+          headerStyle: { backgroundColor: Colors.background },
+          headerLeft: () => (
+            <TouchableOpacity onPress={router.back}>
+              <Ionicons name="arrow-back" size={34} color={Colors.dark} />
+            </TouchableOpacity>
+          ),
+          headerRight: () => (
+            <Link href={"/help"} asChild>
+              <TouchableOpacity>
+                <Ionicons
+                  name="help-circle-outline"
+                  size={34}
+                  color={Colors.dark}
+                />
+              </TouchableOpacity>
+            </Link>
+          ),
+        }}
       />
     </Stack>
   );

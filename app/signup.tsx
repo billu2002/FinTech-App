@@ -10,15 +10,36 @@ import {
   Platform,
 } from "react-native";
 import { useState } from "react";
-import { Link } from "expo-router";
-
-const onSignup = async () => {};
+import { Link, router } from "expo-router";
+import { useRouter } from "expo-router";
+import { useSignUp } from "@clerk/clerk-expo";
 
 const Page = () => {
   const [countryCode, setCountryCode] = useState("+91");
   const [phoneNumber, setPhoneNumber] = useState("");
   const keyboardVerticalOffset = Platform.OS === "ios" ? 80 : 0;
+  const router = useRouter();
 
+  const { signUp } = useSignUp();
+
+  const onSignup = async () => {
+    const fullPhoneNumber = `${countryCode}${phoneNumber}`;
+    router.push({
+      pathname: "/verify/[phone]",
+      params: { phone: fullPhoneNumber },
+    });
+    // try {
+    //   await signUp!.create({
+    //     phoneNumber: fullPhoneNumber,
+    //   });
+    //   router.push({
+    //     pathname: "/verify/[phone]",
+    //     params: { phone: fullPhoneNumber },
+    //   });
+    // } catch (err) {
+    //   console.log("Error Signin up", err);
+    // }
+  };
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -60,7 +81,7 @@ const Page = () => {
           style={[
             defaultStyles.pillButton,
             phoneNumber !== "" ? styles.enabled : styles.disabled,
-            {  marginBottom: 20 },
+            { marginBottom: 20 },
           ]}
           onPress={onSignup}
         >
