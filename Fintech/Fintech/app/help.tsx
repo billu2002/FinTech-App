@@ -1,5 +1,4 @@
-import { View, Text } from "react-native";
-
+import { View, Text } from 'react-native';
 const Page = () => {
   return (
     <View>
@@ -7,5 +6,4 @@ const Page = () => {
     </View>
   );
 };
-
 export default Page;
