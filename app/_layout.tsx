@@ -12,7 +12,8 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 import * as SecureStore from "expo-secure-store";
 
-// Cache the Clerk JWT
+// console.log(CLERK_PUBLISHABLE_KEY)
+
 const tokenCache = {
   async getToken(key: string) {
     try {
@@ -21,6 +22,7 @@ const tokenCache = {
       return null;
     }
   },
+
   async saveToken(key: string, value: string) {
     try {
       return SecureStore.setItemAsync(key, value);
@@ -44,7 +46,8 @@ const InitialLayout = () => {
     ...FontAwesome.font,
   });
   const router = useRouter();
-  const { isLoaded } = useAuth();
+  const { isLoaded, isSignedIn } = useAuth();
+  const segments = useSegments();
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
@@ -57,12 +60,21 @@ const InitialLayout = () => {
     }
   }, [loaded]);
 
+  useEffect(() => {
+    console.log("isSignedIn", isSignedIn);
+    if (!isLoaded) return;
+
+    const inAuthGroup = segments[0] === "authenticated";
+
+    if (isSignedIn && !inAuthGroup) {
+      router.replace("/(authenticated)/(tabs)/home");
+    } else if (!isSignedIn) {
+      router.replace("/");
+    }
+  }, [isSignedIn]);
+
   if (!loaded || !isLoaded) {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" color={Colors.primary} />
-      </View>
-    );
+    return <Text>Loading...</Text>;
   }
 
   return (
@@ -138,6 +150,11 @@ const InitialLayout = () => {
             </Link>
           ),
         }}
+      />
+
+      <Stack.Screen
+        name="(authenticated)/(tabs)"
+        options={{ headerShown: false }}
       />
     </Stack>
   );
