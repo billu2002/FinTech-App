@@ -23,7 +23,7 @@ enum SignInType {
 }
 
 const Page = () => {
-  const [countryCode, setCountryCode] = useState("+92");
+  const [countryCode, setCountryCode] = useState("+61");
   const [phoneNumber, setPhoneNumber] = useState("");
   const keyboardVerticalOffset = Platform.OS === "ios" ? 80 : 0;
   const router = useRouter();
