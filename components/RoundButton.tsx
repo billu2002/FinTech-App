@@ -10,7 +10,7 @@ type RoundBtnProps = {
 
 const RoundBtn = ({ icon, text, onPress }: RoundBtnProps) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.circle}>
         <Ionicons name={icon} size={30} color={Colors.dark} />
       </View>
