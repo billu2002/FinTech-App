@@ -51,28 +51,28 @@ const Page = () => {
                 <Text style={{ color: Colors.gray }}>{currency.symbol}</Text>
               </View>
               <View style={{ gap: 6, alignItems: "flex-end" }}>
-                <Text>{currency.quote.EUR.price.toFixed(2)} €</Text>
+                <Text>$ {currency.quote.USD.price.toFixed(2)}</Text>
                 <View style={{ flexDirection: "row", gap: 4 }}>
                   <Ionicons
                     name={
-                      currency.quote.EUR.percent_change_1h > 0
+                      currency.quote.USD.percent_change_1h > 0
                         ? "caret-up"
                         : "caret-down"
                     }
                     size={16}
                     color={
-                      currency.quote.EUR.percent_change_1h > 0 ? "green" : "red"
+                      currency.quote.USD.percent_change_1h > 0 ? "green" : "red"
                     }
                   />
                   <Text
                     style={{
                       color:
-                        currency.quote.EUR.percent_change_1h > 0
+                        currency.quote.USD.percent_change_1h > 0
                           ? "green"
                           : "red",
                     }}
                   >
-                    {currency.quote.EUR.percent_change_1h.toFixed(2)} %
+                    {currency.quote.USD.percent_change_1h.toFixed(2)} %
                   </Text>
                 </View>
               </View>
