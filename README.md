@@ -1,4 +1,4 @@
-# React Native FinTech Clone with Clerk
+# React Native FinTech App with Clerk
 
 This is a React Native FinTech App using [Clerk](https://go.clerk.com/tQXLCe8) for user authentication with OTP. This app was inspired by the [Revolut](https://www.revolut.com/) app.
 
