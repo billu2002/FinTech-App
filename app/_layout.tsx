@@ -70,14 +70,19 @@ const InitialLayout = () => {
     const inAuthGroup = segments[0] === "authenticated";
 
     if (isSignedIn && !inAuthGroup) {
-      router.replace("/(authenticated)/(tabs)/crypto");
+      router.replace("/(authenticated)/(tabs)/home");
+      // router.replace("/(authenticated)/(modals)/lock");
     } else if (!isSignedIn) {
       router.replace("/");
     }
   }, [isSignedIn]);
 
   if (!loaded || !isLoaded) {
-    return <Text>Loading...</Text>;
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color={Colors.primary} />
+      </View>
+    );
   }
 
   return (

@@ -30,7 +30,7 @@ const Page = () => {
       style={{ backgroundColor: Colors.background }}
       contentContainerStyle={{ paddingTop: headerHeight }}
     >
-      <Text style={defaultStyles.sectionHeader}>Latest Crypot</Text>
+      <Text style={defaultStyles.sectionHeader}>Latest Crypto</Text>
       <View style={defaultStyles.block}>
         {currencies.data?.map((currency: Currency) => (
           <Link href={`/crypto/${currency.id}`} key={currency.id} asChild>
