@@ -53,24 +53,7 @@
           "faceIDPermission": "Allow ${PRODUCT_NAME} to use Face ID."
         }
       ],
-      "expo-build-properties",
-      [
-        "expo-dynamic-app-icon",
-        {
-          "default": {
-            "image": "./assets/images/icon.png",
-            "prerendered": true
-          },
-          "dark": {
-            "image": "./assets/images/icon-dark.png",
-            "prerendered": true
-          },
-          "vivid": {
-            "image": "./assets/images/icon-vivid.png",
-            "prerendered": true
-          }
-        }
-      ]
+      "expo-build-properties"
     ],
     "experiments": {
       "typedRoutes": true

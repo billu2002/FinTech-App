@@ -13,6 +13,7 @@ import Colors from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 
+
 const Page = () => {
   const { user } = useUser();
   const { signOut } = useAuth();
